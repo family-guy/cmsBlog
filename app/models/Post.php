@@ -143,7 +143,7 @@ class Post {
 		}
 	}
 	/**
-	* @return null or array of associative arrays; keys are 'id', 'title'
+	* @return null or array of associative arrays; keys 'id', 'title'
 	*/
 	public function get_last_ten_posts() {
 		return $this->last_ten_posts;

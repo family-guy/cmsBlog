@@ -177,7 +177,7 @@ class Db {
 	* Retrieves a certain number of rows in a certain order
 	* @param array of strings <code>$cols</code>, string <code>$order</code>, integer <code>$nb_results</code>, <code>string</code> $table, <code>boolean</code> $desc
 	* Set <code>$order</code> = 'rand()' for no order; set <code>$nb_results</code> = 18446744073709551615 for all results
-	* @return array of associative arrays where keys are column headings or null if zero rows returned
+	* @return array of associative arrays; keys are column headings or null if zero rows returned
 	*/
 	public function retrieve($cols, $order, $nb_results, $table, $desc) {
 		if (isset(self::$conn)) {
@@ -212,7 +212,7 @@ class Db {
 	/**
 	* Retrieves rows matching criteria
 	* @param array of strings <code>$cols</code>, string <code>$cond</code>, string <code>$table</code>
-	* @return array of associative arrays where keys are column headings or null if zero rows returned
+	* @return array of associative arrays; keys are column headings or null if zero rows returned
 	*/
 	public function find($cols, $cond, $table) {
 		if (isset(self::$conn)) {

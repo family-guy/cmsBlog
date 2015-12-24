@@ -48,7 +48,7 @@ class NestedCategoryController {
 		return $this->username;
 	}
 	/**
-	* @return null or array of associative arrays; keys are 'name', 'id', 'parent_id', 'gauche', 'droite'
+	* @return null or array of associative arrays; keys 'name', 'id', 'parent_id', 'gauche', 'droite'
 	*/
 	public function get_user_nested_categories() {
 		return $this->user_nested_categories;

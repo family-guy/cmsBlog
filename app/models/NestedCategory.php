@@ -157,7 +157,7 @@ class NestedCategory {
 		}
 	}
 	/**
-	* @return null or array of associative arrays; keys are 'id', 'name'
+	* @return null or array of associative arrays; keys 'id', 'name'
 	*/
 	public function get_children() {
 		return $this->children;
@@ -172,7 +172,7 @@ class NestedCategory {
 		}
 	}
 	/**
-	* @return null or array of associative arrays; keys are 'id', 'title'
+	* @return null or array of associative arrays; keys 'id', 'title'
 	*/
 	public function get_posts() {
 		return $this->posts;
@@ -205,7 +205,7 @@ class NestedCategory {
 		}
 	}
 	/**
-	* @return null or associative array; keys are 'gauche', 'droite'
+	* @return null or associative array; keys 'gauche', 'droite'
 	*/
 	public function get_parent_gauche_droite() {
 		return $this->parent_gauche_droite;
@@ -223,7 +223,7 @@ class NestedCategory {
 		}
 	}
 	/**
-	* @return null or array of associative arrays; keys are 'id', 'gauche', 'droite'
+	* @return null or array of associative arrays; keys 'id', 'gauche', 'droite'
 	*/
 	public function get_parent_ancestors() {
 		return $this->parent_ancestors;
@@ -244,7 +244,7 @@ class NestedCategory {
 		}
 	}
 	/**
-	* @return null or array of associative arrays; keys are 'id', 'gauche', 'droite'
+	* @return null or array of associative arrays; keys 'id', 'gauche', 'droite'
 	*/
 	public function get_parent_siblings_and_parent_siblings_children() {
 		return $this->parent_siblings_and_parent_siblings_children;
@@ -265,7 +265,7 @@ class NestedCategory {
 		}
 	}		
 	/**
-	* @return null or array of associative arrays; keys are 'id', 'gauche', 'droite'
+	* @return null or array of associative arrays; keys 'id', 'gauche', 'droite'
 	*/
 	public function get_nested_cats_to_update_after_del() {
 		return $this->nested_cats_to_update_after_del;
