@@ -36,7 +36,7 @@ class NestedCategoryController {
 		return $this->nested_category;
 	}
 	/**
-	* @param NestedCategory object <code>$post</code>
+	* @param NestedCategory object <code>$nested_category</code>
 	*/
 	public function set_nested_category(NestedCategory $nested_category) {
 		$this->nested_category = $nested_category;
