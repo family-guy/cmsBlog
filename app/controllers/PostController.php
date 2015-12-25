@@ -63,15 +63,14 @@ class PostController {
 		}
 	}
 	/**
-	* Updates <code>$post</code> property with new post title and body and then saves Post object into Session variable and database
-	* @param Db object <code>$db</code>, string <code>$new_title</code>, string <code>$new_body</code>, UserController object <code>$user_controller</code>
+	* Attemps to update <code>$post</code> property with new post title and body and then saves Post object into Session variable and database
+	* @param Db object <code>$db</code>, string <code>$title</code>, string <code>$body</code>, UserController object <code>$user_controller</code>
 	*/
 	public function edit(Db $db, $title, $body, UserController $user_controller) {
-		//$this->post->write($db, $user_controller);
 		if ($this->post->get_write()) {
 			$title_clean = filter_var($title, FILTER_SANITIZE_STRING);
 			$this->post->set_title($title_clean);
-			$this->post->set_body($body);
+			$this->post->set_body($body); // body may contain html so cannot use FILTER_SANITIZE_STRING
 			$this->post->save($db);
 			$_SESSION['post'] = serialize($this->post);
 		}
@@ -97,8 +96,9 @@ class PostController {
 		$this->nested_category_id = $nested_category_id; 
 	}
 	/**
-	* Deletes post from database as per given <code>$id</code>
-	* Checks id of post being deleted matches id of post stored in Session variable and checks if user has permission to edit post
+	* Deletes post from database as per given id
+	* Checks id of post being deleted matches id of post stored in Session variable
+	* Checks if user has permission to edit post
 	* @param Db object <code>$db</code>, string <code>$id</code>, NestedCategoryController object <code>$nested_category_controller</code>
 	*/
 	public function delete($db, $id, NestedCategoryController $nested_category_controller) {

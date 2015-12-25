@@ -124,7 +124,7 @@ class UserController {
 		$pw = null;	
 	}
 	/**
-	* Deletes user from database matching <code>$user</code> property
+	* Deletes user from database matching <code>$user</code> property. Ends session
 	* @param Db object <code>$db</code>
 	*/
 	public function delete(Db $db) {
@@ -176,7 +176,7 @@ class UserController {
 		}
 	}
 	/**
-	* End session
+	* Ends session
 	*/
 	public function logout() {
 		session_destroy();

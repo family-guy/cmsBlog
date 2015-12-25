@@ -151,13 +151,13 @@ class NestedCategoryController {
 		$_SESSION['user'] = serialize($user);
 	}
 	/**
-	* Creates a new NestedCategory object and saves into database. If parent of new NestedCategory object is a leaf, all posts in parent category are moved into new NestedCategory object. Thus when adding multiple new NestedCategory objects, first new NestedCategory object should correspond to largest number of posts in parent category
+	* Creates a new NestedCategory object and saves into database. If parent of new category contains posts, these posts are moved into new category
 	* @param Db object <code>$db</code>, string <code>$name</code>, UserController object <code>$user_controller</code>
 	*/
 	public function add(Db $db, $name, UserController $user_controller) {
 		$user = $user_controller->get_user();
-		$parent_id = $this->nested_category->get_id();
 		$user_id = $user->get_id();
+		$parent_id = $this->nested_category->get_id();
 		$name_clean = filter_var($name, FILTER_SANITIZE_STRING);
 		$nested_category = new NestedCategory();
 		$nested_category->set_name($name_clean);
@@ -182,11 +182,11 @@ class NestedCategoryController {
 			// add posts to new category
 			$post_results = Post::posts_in_nested_category($db, $parent_id);
 			if (isset($post_results)) {
-				$new_id = NestedCategory::max_id($db, $user_id);
+				$new_nested_category_id = NestedCategory::max_id($db, $user_id); 
 				foreach ($post_results as $post_result) {
 					$post = new Post();
 					$post->set_id((int)$post_result['id']);
-					$post->set_nested_category_id((int)$new_id);
+					$post->set_nested_category_id((int)$new_nested_category_id);
 					$post->save($db);
 				}
 			}
