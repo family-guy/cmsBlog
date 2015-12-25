@@ -16,19 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class NestedCategoryEditNameView {
-	private $nested_category_controller;
-	
-	public function __construct(NestedCategoryController $nested_category_controller) {
-		$this->nested_category_controller = $nested_category_controller;
-	}
-	
+class NestedCategoryEditNameView extends View {
+
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		$nested_category_id = $this->nested_category_controller->get_nested_category()->get_id();
+		$nested_category_id = $this->controller->get_nested_category()->get_id();
 		header("Location: " . Config::$configuration["baseurl"] . "/index.php?controller=nested_category&action=select&nested_category_id={$nested_category_id}");
 
 	}

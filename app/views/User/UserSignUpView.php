@@ -16,27 +16,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class UserSignUpView {
-	private $user_controller;
-	
-	public function __construct(UserController $user_controller) {
-		$this->user_controller = $user_controller;
-	}
+class UserSignUpView extends View {
 	
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		if (!$this->user_controller->get_username_updated()) {
+		if (!$this->controller->get_username_updated()) {
 			require_once dirname(dirname(dirname(__FILE__))) . '/templates/badUsername.php';
 		}
-		elseif (!$this->user_controller->get_email_updated() || !$this->user_controller->get_pw_updated()) {
+		elseif (!$this->controller->get_email_updated() || !$this->controller->get_pw_updated()) {
 			require_once dirname(dirname(dirname(__FILE__))) . '/templates/badEmail.php';
 		}
 		else {
-			$username = $this->user_controller->get_user()->get_username();
-			$nested_categories = $this->user_controller->get_user()->get_nested_categories();
+			$username = $this->controller->get_user()->get_username();
+			$nested_categories = $this->controller->get_user()->get_nested_categories();
 			require_once dirname(dirname(dirname(__FILE__))) . '/templates/userProfileHome.php';
 		}
 	}

@@ -16,22 +16,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class NestedCategorySelectView {
-	private $nested_category_controller;
-	
-	public function __construct(NestedCategoryController $nested_category_controller) {
-		$this->nested_category_controller = $nested_category_controller;
-	}
-	
+class NestedCategorySelectView extends View {
+
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		if ($this->nested_category_controller->get_nested_category()->get_valid_id()) {
-			$nested_category_name = $this->nested_category_controller->get_nested_category()->get_name();
-			$nested_category_id = $this->nested_category_controller->get_nested_category()->get_id();
-			$nested_category_children = $this->nested_category_controller->get_nested_category()->get_children();
+		if ($this->controller->get_nested_category()->get_valid_id()) {
+			$nested_category_name = $this->controller->get_nested_category()->get_name();
+			$nested_category_id = $this->controller->get_nested_category()->get_id();
+			$nested_category_children = $this->controller->get_nested_category()->get_children();
 			require_once dirname(dirname(dirname(__FILE__))) . '/templates/categorySelectedHome.php';
 		}
 		else {

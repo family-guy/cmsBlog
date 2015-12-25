@@ -16,19 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class PostIndexView {
-	private $post_controller;
-	
-	public function __construct(PostController $post_controller) {
-		$this->post_controller = $post_controller;
-	}
-	
+class PostIndexView extends View {
+
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		$last_ten_posts = $this->post_controller->get_post()->get_last_ten_posts();
+		$last_ten_posts = $this->controller->get_post()->get_last_ten_posts();
 		require_once dirname(dirname(dirname(__FILE__))) . '/templates/home.php';
 	}
 }

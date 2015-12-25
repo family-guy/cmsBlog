@@ -16,19 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class NestedCategoryShowPostsView {
-	private $nested_category_controller;
-	
-	public function __construct(NestedCategoryController $nested_category_controller) {
-		$this->nested_category_controller = $nested_category_controller;
-	}
-	
+class NestedCategoryShowPostsView extends View {
+
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		$posts = $this->nested_category_controller->get_nested_category()->get_posts();
+		$posts = $this->controller->get_nested_category()->get_posts();
 		require_once dirname(dirname(dirname(__FILE__))) . '/templates/posts.php';
 	}
 }

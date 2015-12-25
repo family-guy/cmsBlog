@@ -16,19 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class PostEditView {
-	private $post_controller;
-	
-	public function __construct(PostController $post_controller) {
-		$this->post_controller = $post_controller;
-	}
+class PostEditView extends View {
 	
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		$post_id = $this->post_controller->get_post()->get_id();
+		$post_id = $this->controller->get_post()->get_id();
 		header("Location: " . Config::$configuration['baseurl'] . "/index.php?controller=post&action=select&id={$post_id}");
 	}
 }

@@ -26,6 +26,7 @@ function autoloader($class_name) {
 		  	  dirname(dirname(__FILE__)) . '/app/views/User/',
 			  dirname(dirname(__FILE__)) . '/app/views/NestedCategory/',
 		  	  dirname(dirname(__FILE__)) . '/app/views/Post/',
+			  dirname(dirname(__FILE__)) . '/app/views/',
 		      dirname(dirname(__FILE__)) . '/app/config/'];
 	foreach ($paths as $path) {
 		$file = $path . $class_name . '.php';

@@ -16,25 +16,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class NestedCategoryDeleteView {
-	private $nested_category_controller;
-	
-	public function __construct(NestedCategoryController $nested_category_controller) {
-		$this->nested_category_controller = $nested_category_controller;
-	}
-	
+class NestedCategoryDeleteView extends View {
+
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		$nested_category_id = $this->nested_category_controller->get_nested_category()->get_id();
+		$nested_category_id = $this->controller->get_nested_category()->get_id();
 		if (isset($nested_category_id)) {
 			header("Location: " . Config::$configuration["baseurl"] . "/index.php?controller=nested_category&action=select&nested_category_id={$nested_category_id}");
 		}
 		else {
-			$username = $this->nested_category_controller->get_username();
-			$nested_categories = $this->nested_category_controller->get_user_nested_categories();
+			$username = $this->controller->get_username();
+			$nested_categories = $this->controller->get_user_nested_categories();
 			require_once dirname(dirname(dirname(__FILE__))) . '/templates/userProfileHome.php';
 		}
 	}

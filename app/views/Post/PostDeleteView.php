@@ -16,19 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class PostDeleteView { 
-	private $post_controller;
-	
-	public function __construct(PostController $post_controller) {
-		$this->post_controller = $post_controller;
-	}
-	
+class PostDeleteView extends View { 
+
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		$nested_category_id = $this->post_controller->get_post()->get_nested_category_id();
+		$nested_category_id = $this->controller->get_post()->get_nested_category_id();
 		header("Location: " . Config::$configuration['baseurl'] . "/index.php?controller=nested_category&action=show_posts&nested_category_id={$nested_category_id}");
 	}
 }

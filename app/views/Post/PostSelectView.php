@@ -16,26 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class PostSelectView {
-	private $post_controller;
-	
-	public function __construct(PostController $post_controller) {
-		$this->post_controller = $post_controller;
-	}
-	
+class PostSelectView extends View {
+
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		if ($this->post_controller->get_post()->get_valid_id()) {
-			$post_body = $this->post_controller->get_post()->get_body();
-			$post_title = $this->post_controller->get_post()->get_title();
-			$post_last_modified = $this->post_controller->get_post()->get_date();
-			$post_username = $this->post_controller->get_post()->get_username();
-			$post_id = $this->post_controller->get_post()->get_id();
-			$nested_category_id = $this->post_controller->get_post()->get_nested_category_id();
-			if ($this->post_controller->get_post()->get_write()) {
+		if ($this->controller->get_post()->get_valid_id()) {
+			$post_body = $this->controller->get_post()->get_body();
+			$post_title = $this->controller->get_post()->get_title();
+			$post_last_modified = $this->controller->get_post()->get_date();
+			$post_username = $this->controller->get_post()->get_username();
+			$post_id = $this->controller->get_post()->get_id();
+			$nested_category_id = $this->controller->get_post()->get_nested_category_id();
+			if ($this->controller->get_post()->get_write()) {
 				require_once dirname(dirname(dirname(__FILE__))) . '/templates/postSelectedHomeReadWrite.php';
 			}
 			else {

@@ -16,21 +16,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class UserLoginView {
-	private $user_controller;
-	
-	public function __construct(UserController $user_controller) {
-		$this->user_controller = $user_controller;
-	}
+class UserLoginView extends View {
 	
 	/*
 	* Methods
 	*/
 	
 	public function output() {
-		if ($this->user_controller->get_user()->get_auth()) {
-			$username = $this->user_controller->get_user()->get_username();
-			$nested_categories = $this->user_controller->get_user()->get_nested_categories();
+		if ($this->controller->get_user()->get_auth()) {
+			$username = $this->controller->get_user()->get_username();
+			$nested_categories = $this->controller->get_user()->get_nested_categories();
 			require_once dirname(dirname(dirname(__FILE__))) . '/templates/userProfileHome.php';
 		}
 		else {

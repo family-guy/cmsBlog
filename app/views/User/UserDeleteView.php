@@ -16,12 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-class UserDeleteView {
-	private $user_controller;
-	
-	public function __construct(UserController $user_controller) {
-		$this->user_controller = $user_controller;
-	}
+class UserDeleteView extends View {
 	
 	/*
 	* Methods
