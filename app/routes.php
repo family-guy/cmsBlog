@@ -104,7 +104,7 @@ if (array_key_exists($controller, $controllers) && in_array($action, $controller
 						set_render_view($controller, $user_controller, $action, $db, $_POST['username'], $_POST['email_address'], $_POST['new_pw']);
 					}	
 					else {
-						render($templates['404_error'], $user_controller);			
+						render($templates['404_error'], $user_controller);		//	
 					}
 					break;
 				case 'delete':
