@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 class NestedCategoryController {
 	private $nested_category;
-	private $username; // when new nested category is added, edited or deleted, store user's username here
-	private $user_nested_categories; // when new nested category added, edited or deleted, store user's nested categories here
+	private $username; // when new nested category is added or deleted, store user's username here
+	private $user_nested_categories; // when new nested category added or deleted, store user's nested categories here
 
 	public function __construct(NestedCategory $nested_category) {
 		$this->nested_category = $nested_category;
@@ -78,7 +78,7 @@ class NestedCategoryController {
 		}
 	}
 	/**
-	* Deletes nested category and all descendant categories from database as per given <code>$id</code>
+	* Deletes nested category and all descendant categories from database as per given id
 	* Checks if id of nested category being deleted belongs to user. If so, updates <code>$nested_categories</code> property of <code>$user</code> property and saves User object into Session variable
 	* @param Db object <code>$db</code>, string <code>$id</code>, UserController object <code>$user_controller</code>
 	*/
@@ -119,11 +119,11 @@ class NestedCategoryController {
 					}
 				}
 			}
+			$user->nested_categories($db); 
+			$_SESSION['user'] = serialize($user);
 			// userProfileHome.php
 			$this->username = $user->get_username(); 
-			$user->nested_categories($db); 
 			$this->user_nested_categories = $user->get_nested_categories(); 
-			$_SESSION['user'] = serialize($user);
 		}
 	}	
 	/**
@@ -145,15 +145,11 @@ class NestedCategoryController {
 		if ($edit_valid) {
 			$this->nested_category->set_name($name_clean);
 			$this->nested_category->save($db);
+			$_SESSION['nested_category'] = serialize($this->nested_category);
 		}
-		// userProfileHome.php
-		$this->username = $user->get_username();
 		$user->nested_categories($db); 
-		$this->user_nested_categories = $user->get_nested_categories(); 
 		$_SESSION['user'] = serialize($user);
 	}
-	
-	// based on the way the post controller add method works i.e. create a new object and don't store in session
 	/**
 	* Creates a new NestedCategory object and saves into database. If parent of new NestedCategory object is a leaf, all posts in parent category are moved into new NestedCategory object. Thus when adding multiple new NestedCategory objects, first new NestedCategory object should correspond to largest number of posts in parent category
 	* @param Db object <code>$db</code>, string <code>$name</code>, UserController object <code>$user_controller</code>
@@ -221,11 +217,11 @@ class NestedCategoryController {
 				}	
 			}
 		}
+		$user->nested_categories($db); 
+		$_SESSION['user'] = serialize($user);
 		// userProfileHome.php
 		$this->username = $user->get_username(); 
-		$user->nested_categories($db); 
 		$this->user_nested_categories = $user->get_nested_categories(); 
-		$_SESSION['user'] = serialize($user);
 	}
 }
 ?>

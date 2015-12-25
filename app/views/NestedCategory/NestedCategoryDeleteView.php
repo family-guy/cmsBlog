@@ -28,9 +28,15 @@ class NestedCategoryDeleteView {
 	*/
 	
 	public function output() {
-		$username = $this->nested_category_controller->get_username();
-		$nested_categories = $this->nested_category_controller->get_user_nested_categories();
-		require_once dirname(dirname(dirname(__FILE__))) . '/templates/userProfileHome.php';
+		if (null !== $this->nested_category_controller->get_nested_category()->get_id()) {
+			$id = $this->nested_category_controller->get_nested_category()->get_id();
+			header("Location: " . Config::$configuration["baseurl"] . "/index.php?controller=nested_category&action=select&nested_category_id={$id}");
+		}
+		else {
+			$username = $this->nested_category_controller->get_username();
+			$nested_categories = $this->nested_category_controller->get_user_nested_categories();
+			require_once dirname(dirname(dirname(__FILE__))) . '/templates/userProfileHome.php';
+		}
 	}
 }
 ?>
