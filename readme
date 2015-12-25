@@ -1,0 +1,14 @@
+Requirements (versions used during testing in parentheses):
+1. Apache (2.2.26)
+2. PHP, version 5.4 or later (5.4.30)
+3. MySQL (5.6.21)
+Installation
+1. Download files into document root (or directory below document root)
+2. Set values in Config.php accordingly. 
+   (i) rootpath equals path of directory in 1. relative to document root e.g. if files downloaded to        /my/document/root/my/path, set as '/my/path'. If files downloaded to document root, set as ''
+   (ii) baseurl: append rootpath to 'http://myserver.com'
+3. Import db.sql into database specified in Config.php e.g mysql -u root -p dbname < db.sql 
+Features
+-- TinyMCE WYSWIYG HTML editor
+-- MathJax and google-code-prettify enabled
+-- organise posts into categories, sub-categories, sub-sub-categories, etc.
