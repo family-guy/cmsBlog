@@ -25,7 +25,7 @@ class User {
 	
 	private $id;
 	private $email;
-	private $pw; 
+	private $pw; // hashed 
 	private $username; 
 	
 	/*
@@ -161,8 +161,8 @@ class User {
 		}
 	}
 	/**
-	* Attempts to set value of <code>$id</code> from a specified email
-	* @param Db object <code>$db</code>, string <code>$email</code>
+	* Attempts to set value of <code>$id</code> from a specified username
+	* @param Db object <code>$db</code>, string <code>$username</code>
 	*/
 	public function id_from_username(Db $db, $username) {
 		$db_result = self::find($db, ['id'], "username = '{$username}'"); 
@@ -193,7 +193,7 @@ class User {
 	*/
 	public function post_belong_to_user(Db $db, $post_id) {
 		if (isset($this->id)) {
-			$db_result = Post::find($db, ['user_id'], "id = {$post_id}"); // is an array
+			$db_result = Post::find($db, ['user_id'], "id = {$post_id}"); // an array
 			if (isset($db_result)) {
 				return $db_result[0]['user_id'] == $this->id;
 			}
@@ -241,15 +241,15 @@ class User {
 				$db->edit($this->email, 'email', $cond, self::$table);
 			}
 			if (isset($this->pw)) {
-				$db->edit(password_hash($this->pw, PASSWORD_DEFAULT), 'pw', $cond, self::$table);
+				$db->edit($this->pw, 'pw', $cond, self::$table);
 			}
 		}
 		else {
-			$db->add([$this->username, $this->email, password_hash($this->pw, PASSWORD_DEFAULT)], ['username', 'email', 'pw'], self::$table);
+			$db->add([$this->username, $this->email, $this->pw], ['username', 'email', 'pw'], self::$table);
 		}
 	}
 	/**
-	* Attempts to set values of certain database properties using <code>$id</code> property
+	* Attempts to set values of database properties using <code>$id</code> property
 	* Assumes property names are same as in database 
 	* @param Db object <code>$db</code>
 	*/

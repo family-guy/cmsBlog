@@ -67,7 +67,7 @@ class UserController {
 	public function login(Db $db, $ident, $pw) {
 		$ident_clean = filter_var($ident, FILTER_SANITIZE_STRING);
 		$pw_clean = filter_var($pw, FILTER_SANITIZE_STRING);
-		// check for presence of @ in identifier to see if identifier is username or email
+		// check for presence of @ in identifier to see if username or email
 		$ident_is_username = (strpos($ident_clean, '@') === false);
 		if ($ident_is_username) {
 			$this->user->id_from_username($db, $ident_clean);
@@ -85,7 +85,7 @@ class UserController {
 		}
 	}
 	/**
-	* Updates <code>$user</code> property with new user details. If details are valid, saves User object into Session variable and database
+	* Attempts to update <code>$user</code> property with new user details. If details are valid, saves User object into Session variable and database
 	* @param Db object <code>$db</code>, string <code>$username</code>, string <code>$email</code>, string <code>$pw</code>
 	*/
 	public function sign_up(Db $db, $username, $email, $pw) {
@@ -109,7 +109,7 @@ class UserController {
 		}
 		$pw_clean = filter_var($pw, FILTER_SANITIZE_STRING);
 		if ($pw_clean == $pw) {
-			$this->user->set_pw($pw);
+			$this->user->set_pw(password_hash($pw, PASSWORD_DEFAULT));
 			$this->pw_updated = true;
 		}
 		if ($this->username_updated && $this->email_updated && $this->pw_updated) {
@@ -118,10 +118,10 @@ class UserController {
 			$this->user->id_from_username($db, $this->user->get_username());
 			$this->user->db_props($db);
 			$this->user->auth($db, $pw_clean);
-			$pw_clean = null;
-			$pw = null;
 			$_SESSION['user'] = serialize($this->user);
-		}	
+		}
+		$pw_clean = null;
+		$pw = null;	
 	}
 	/**
 	* Deletes user from database matching <code>$user</code> property
@@ -141,13 +141,12 @@ class UserController {
 	public function edit_email(Db $db, $email, $pw) {
 		$this->email_updated = false;
 		if (!User::email_already_exists($db, $email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$pw_clean = filter_var($pw, FILTER_SANITIZE_STRING);
+			$pw_clean = filter_var($pw, FILTER_SANITIZE_STRING);	
 			$this->user->auth($db, $pw_clean);
+			$pw_clean = null;
+			$pw = null;
 			if ($this->user->get_auth()) {
 				$this->user->set_email($email); 
-				$this->user->set_pw($pw_clean); // password also needs setting to avoid hashing password twice
-				$pw_clean = null;
-				$pw = null;
 				$this->user->save($db);
 				$_SESSION['user'] = serialize($this->user);
 				$this->email_updated = true;
@@ -167,7 +166,7 @@ class UserController {
 		$this->user->auth($db, $current_pw_clean);
 		if ($this->user->get_auth()) {
 			if ($new_pw_clean == $confirm_new_pw_clean) {
-				$this->user->set_pw($new_pw_clean); 
+				$this->user->set_pw(password_hash($new_pw_clean, PASSWORD_DEFAULT)); 
 				$new_pw_clean = null;
 				$new_pw = null;
 				$this->user->save($db);

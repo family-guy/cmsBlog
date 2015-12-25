@@ -82,7 +82,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	<br />
 	<br />
 	<br />
-	<a href="./">Back</a>
+	<a href="./">Return to profile</a>
 	<br />
 	<br />
 	<br />

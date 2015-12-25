@@ -35,9 +35,9 @@ class Post {
 	*/
 	
 	private $last_ten_posts; // PostIndexView.php
-	private $valid_id = false; // is <code>$id</code> a valid value
+	private $valid_id = false; // is <code>$id</code> property a valid value
 	private $write = false; // can post be edited
-	private $username; // matching username to <code>$user_id</code>
+	private $username; // matching username to <code>$user_id</code> property
 	
 	public function __construct() {}
 		
@@ -185,12 +185,10 @@ class Post {
 	* Checks if given user can edit post
 	*/
 	public function write(Db $db, UserController $user_controller) {
+		$this->write = false;
 		$user = $user_controller->get_user();
 		if ($user->get_id() !== null && isset($this->id)) {
 			$this->write = $user->post_belong_to_user($db, $this->id); 
-		}
-		else {
-			$this->write = false;
 		}
 	}
 	/**

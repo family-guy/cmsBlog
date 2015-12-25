@@ -60,8 +60,7 @@ class Db {
 	*/
 	public function exec($sql) {
 		try {
-			$result = self::$conn->exec($sql);
-			return $result;
+			return self::$conn->exec($sql);
 		}
 		catch (PDOException $e) {
 			$this->error_msg($e);
@@ -74,41 +73,11 @@ class Db {
 	*/
 	public function query($sql) {
 		try {
-			$result = self::$conn->query($sql);
-			return $result;
+			return self::$conn->query($sql);
 		}
 		catch (PDOException $e) {
 			$this->error_msg($e);
 			exit();
-		}
-	}
-	/**
-	* Gets number of rows in table matching criteria
-	* @param array <code>$values</code>, array of strings <code>$cols</code>, string <code>$table</code>. Order in <code>$values</code> matches that in $cols
-	* @return integer
-	*/
-	public function nb_occ($values, $cols, $table) {
-		if (isset(self::$conn)) {
-			try {
-				$sql = "SELECT COUNT(*) AS x FROM {$table} WHERE ";
-				foreach ($cols as $col) {
-					$A[] = "{$col} = ?"; 
-				}
-				$sql .= implode(" AND ", $A);
-				$stmt = self::$conn->prepare($sql);
-				$stmt->execute($values);
-				foreach ($stmt as $row) {
-					$result = $row['x']; // only one row returned as count is an aggregate function
-				}
-				return $result;
-			}
-			catch (PDOException $e) {
-				$this->error_msg($e);
-				exit();
-			}
-		}
-		else {
-			echo $this->no_conn_msg;
 		}
 	}
 	/**

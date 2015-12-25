@@ -24,7 +24,7 @@ function render($template, $controller) {
 }
 
 /**
-* Converts underscore_case to camelCase
+* Converts underscore_case to CamelCase
 * @param string <code>$name</code>
 * @return string
 */
@@ -110,6 +110,9 @@ if (array_key_exists($controller, $controllers) && in_array($action, $controller
 				case 'delete':
 					if ($user_controller->get_user()->get_auth()) { 
 						set_render_view($controller, $user_controller, $action, $db);
+					}
+					else {
+						render($templates['404_error'], $user_controller);		
 					}
 					break;
 				case 'edit_email':

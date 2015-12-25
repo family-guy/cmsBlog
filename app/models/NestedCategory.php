@@ -36,7 +36,7 @@ class NestedCategory {
 	
 	private $children; 
 	private $posts; 
-	private $valid_id = false; // is <code>$id</code> a valid value
+	private $valid_id = false; // is <code>$id</code> property a valid value
 	private $parent_gauche_droite; 
 	private $parent_ancestors;
 	private $parent_siblings_and_parent_siblings_children;
