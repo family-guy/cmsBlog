@@ -9,7 +9,7 @@ Requirements (versions used in testing in parentheses):
 
 Installation
 
-1. Download files on to server such that index.php is in or in a directory below the document root
+1. Download files into the document root or into a directory contained in it. Alternatively, after downloading the files, set public as the document root
 
 2. Set values in Config.php accordingly.
 
