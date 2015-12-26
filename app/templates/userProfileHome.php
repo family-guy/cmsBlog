@@ -72,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	}
 	/**
 	* Recursively generates list of sub-categories of a particular category (specified by id)
-	* @param array of associative arrays (keys are 'name', 'id', 'parent_id', 'gauche', 'droite') <code>$nested_categories</code>, string <code>$parent_id</code>
+	* @param array of associative arrays (keys 'name', 'id', 'parent_id', 'gauche', 'droite') <code>$nested_categories</code>, string <code>$parent_id</code>
 	* @return string
 	*/
 	function display_nested_list($nested_categories, $parent_id) {
@@ -156,6 +156,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	<br />
 	<br />
 	<br />
-	<a href=<?php echo Config::$configuration['rootpath'] . "/index.php?controller=user&amp;action=logout"; ?>>Logout</a>
+	<?php echo "<a href='" . Config::$configuration['rootpath'] . "/index.php?controller=user&amp;action=logout'>Logout</a>";?>
 </body>
 </html>
