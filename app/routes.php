@@ -181,8 +181,8 @@ if (array_key_exists($controller, $controllers) && in_array($action, $controller
 					}
 					break;
 				case 'delete':
-					if (isset($_GET['nested_category_id']) && is_numeric($_GET['nested_category_id'])) {
-						set_render_view($controller, $nested_category_controller, $action, $db, $_GET['nested_category_id'], $user_controller);
+					if (isset($_POST['nested_category_id'])) {
+						set_render_view($controller, $nested_category_controller, $action, $db, $_POST['nested_category_id'], $user_controller);
 					}
 					else {
 						render($templates['404_error'], $nested_category_controller);	
@@ -223,8 +223,8 @@ if (array_key_exists($controller, $controllers) && in_array($action, $controller
 					}
 					break;
 				case 'delete':
-					if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-						set_render_view($controller, $post_controller, $action, $db, $_GET['id'], $nested_category_controller);
+					if (isset($_POST['post_id'])) {
+						set_render_view($controller, $post_controller, $action, $db, $_POST['post_id'], $nested_category_controller);
 					}
 					else {
 						render($templates['404_error'], $post_controller);	

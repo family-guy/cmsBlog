@@ -64,7 +64,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 		<?php echo "<a href='" . Config::$configuration['rootpath'] . "/index.php?controller=post&amp;action=edit'>Edit post</a>";?>
 	</section>
 	<section class="block-of-text">
-		<?php echo "<a href='" . Config::$configuration['rootpath'] . "/index.php?controller=post&amp;action=delete&amp;id=" . $post_id . "'>Delete post</a>";?>
+		<?php 
+		echo "<form action='" . Config::$configuration['rootpath'] . "/index.php?controller=post&amp;action=delete' method='post' name='delPost'>";
+		echo "<input type='hidden' name='post_id' value={$post_id} />";
+		?>
+			<a href="#" onclick="document.delPost.submit();">Delete post</a>
 	</section>
 	<section class="block-of-text">
 		<?php echo "<a href='" . Config::$configuration['rootpath'] . "/index.php?controller=nested_category&amp;action=show_posts&amp;nested_category_id=" . $nested_category_id . "'>Back</a>";?>

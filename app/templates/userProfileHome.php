@@ -141,9 +141,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	<br />
 	<!--Delete category dropdown-->
 	<label>Delete category</label>
-	<form action="" method="get">
-		<input type="hidden" name="controller" value="nested_category" /> 
-		<input type="hidden" name="action" value="delete" />
+	<?php echo "<form action='" . Config::$configuration['rootpath'] . "/index.php?controller=nested_category&amp;action=delete' method='post'>";?>
 		<select name="nested_category_id">
 			<?php
 			foreach ($roots as $root) {
