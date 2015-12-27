@@ -210,15 +210,17 @@ class Post {
 		}
 	}
 	/**
-	* @param Db object <code>$db</code>
+	* @param Db object <code>$db</code>, array of strings <code>$cols</code>, string <code>$order</code>, integer <code>$nb_results</code>, <code>boolean</code> $desc
+	* @return array of associative arrays; keys are column headings or null if zero rows returned
 	*/
-	public static function retrieve(Db $db, $cols, $order, $nb_results, $desc) {
+	private static function retrieve(Db $db, $cols, $order, $nb_results, $desc) {
 		return $db->retrieve($cols, $order, $nb_results, self::$table, $desc);
 	}
 	/**
-	* @param Db object <code>$db</code>
+	* @param Db object <code>$db</code>, array of strings <code>$cols</code>, string <code>$cond</code>
+	* @return array of associative arrays; keys are column headings or null if zero rows returned
 	*/
-	public static function find(Db $db, $cols, $cond) {
+	private static function find(Db $db, $cols, $cond) {
 		return $db->find($cols, $cond, self::$table);
 	}
 	/**
