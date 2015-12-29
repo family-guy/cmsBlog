@@ -2,7 +2,7 @@ Requirements (versions used in testing in parentheses):
 
 1. Apache (2.2.26)
 
-2. PHP 5.4 or later (5.4.30)
+2. PHP 5.4 or later (5.6.6)
 
 3. MySQL (5.6.21)
 
