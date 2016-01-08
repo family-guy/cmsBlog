@@ -76,7 +76,7 @@ class UserController {
 			$this->user->id_from_email($db, $ident_clean);
 		}
 		$this->user->db_props($db);
-		$this->user->auth($db, $pw_clean);
+		$this->user->auth($pw_clean);
 		$pw_clean = null;
 		$pw = null;
 		if ($this->user->get_auth()) {
@@ -117,7 +117,7 @@ class UserController {
 			// authenticate user
 			$this->user->id_from_username($db, $this->user->get_username());
 			$this->user->db_props($db);
-			$this->user->auth($db, $pw_clean);
+			$this->user->auth($pw_clean);
 			$_SESSION['user'] = serialize($this->user);
 		}
 		$pw_clean = null;
@@ -142,7 +142,7 @@ class UserController {
 		$this->email_updated = false;
 		if (!User::email_already_exists($db, $email) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$pw_clean = filter_var($pw, FILTER_SANITIZE_STRING);	
-			$this->user->auth($db, $pw_clean);
+			$this->user->auth($pw_clean);
 			$pw_clean = null;
 			$pw = null;
 			if ($this->user->get_auth()) {
@@ -163,7 +163,7 @@ class UserController {
 		$current_pw_clean = filter_var($current_pw, FILTER_SANITIZE_STRING);
 		$new_pw_clean = filter_var($new_pw, FILTER_SANITIZE_STRING);
 		$confirm_new_pw_clean = filter_var($confirm_new_pw, FILTER_SANITIZE_STRING);
-		$this->user->auth($db, $current_pw_clean);
+		$this->user->auth($current_pw_clean);
 		if ($this->user->get_auth()) {
 			if ($new_pw_clean == $confirm_new_pw_clean) {
 				$this->user->set_pw(password_hash($new_pw_clean, PASSWORD_DEFAULT)); 

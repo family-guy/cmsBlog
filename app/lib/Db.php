@@ -55,32 +55,6 @@ class Db {
 		}
 	}
 	/**
-	* Executes SQL statement
-	* @param string <code>$sql</code>
-	*/
-	public function exec($sql) {
-		try {
-			return self::$conn->exec($sql);
-		}
-		catch (PDOException $e) {
-			$this->error_msg($e);
-			exit();
-		}
-	}
-	/**
-	* Executes SQL query
-	* @param string <code>$sql</code>
-	*/
-	public function query($sql) {
-		try {
-			return self::$conn->query($sql);
-		}
-		catch (PDOException $e) {
-			$this->error_msg($e);
-			exit();
-		}
-	}
-	/**
 	* Sets new value in field for rows matching criteria
 	* @param array of strings <code>$cols</code>, string <code>$cond</code>, string <code>$table</code>
 	*/

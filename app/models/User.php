@@ -124,9 +124,9 @@ class User {
 	}
 	/**
 	* Sets value of <code>$auth</code> property
-	* @param Db object <code>$db</code>, string <code>$pw_no_hash</code>
+	* @param string <code>$pw_no_hash</code>
 	*/
-	public function auth(Db $db, $pw_no_hash) {
+	public function auth($pw_no_hash) {
 		$this->auth = false;
 		if (isset($this->pw)) {
 			$pw_hash = $this->pw;
