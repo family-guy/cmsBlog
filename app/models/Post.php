@@ -163,7 +163,7 @@ class Post {
 		return $this->all_posts;
 	}
 	/**
-	* Sets value of <code>$last_five_posts</code> property
+	* Sets value of <code>$all_posts</code> property
 	* @param Db object <code>$db</code>
 	*/
 	public function all_posts(Db $db) {
