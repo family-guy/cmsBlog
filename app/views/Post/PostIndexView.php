@@ -23,7 +23,8 @@ class PostIndexView extends View {
 	*/
 	
 	public function output() {
-		$last_ten_posts = $this->controller->get_post()->get_last_ten_posts();
+		$last_five_posts = $this->controller->get_post()->get_last_five_posts();
+		$all_posts = $this->controller->get_post()->get_all_posts();
 		require_once dirname(dirname(dirname(__FILE__))) . '/templates/home.php';
 	}
 }

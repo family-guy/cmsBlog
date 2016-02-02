@@ -111,11 +111,12 @@ class PostController {
 		$this->post->set_nested_category_id($nested_category_controller->get_nested_category()->get_id());
 	}
 	/**
-	* Updates <code>$last_ten_posts</code> property of <code>$post</code> property 
+	* Updates <code>$last_five_posts</code>, <code>$all_posts</code> properties of <code>$post</code> property 
 	* @param Db object <code>$db</code>
 	*/
 	public function index(Db $db) {
-		$this->post->last_ten_posts($db);
+		$this->post->last_five_posts($db);
+		$this->post->all_posts($db);
 	}
 }
 ?>

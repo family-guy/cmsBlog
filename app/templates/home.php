@@ -17,12 +17,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 <!DOCTYPE html>
 <html lang='en'>
 <meta charset="UTF-8">
+<meta name="description" content="free web cms">
 <head>
 	<title>Welcome to MyApp. Login, sign-up or learn more</title>
 	<?php echo "<script src=" . Config::$configuration['rootpath'] . "/js/forms.js></script>";?>	
 </head>
 <body>
-	<p>Welcome to MyApp.</p>
+	<strong><p>Welcome to MyApp.</p></strong>
+	<br />
+	<br />
+	<br />
 	<p>If you have already registered, please login using your username or email.</p>
 	<!--Login, username and password-->
 	<script type="text/javascript">
@@ -38,15 +42,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	var newUsers = makeForm('post', rootPath + '/index.php?controller=user&action=sign_up', ['username', 'email_address', 'new_pw'], ['text', 'text', 'password'], ['Username: ', 'Email address: ', 'New password: '], 'Sign up');
 	body.appendChild(newUsers);
 	</script>
-	<p>MyApp: description of what the app does.</p>
-	<p>Ten latest posts</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>Latest posts</p>
 	<?php 
-	if (isset($last_ten_posts)) {
-		foreach ($last_ten_posts as $post) {
+	if (isset($last_five_posts)) {
+		foreach ($last_five_posts as $post) {
 			$root_path = Config::$configuration["rootpath"];
 			echo "<a href='{$root_path}/index.php?controller=post&action=select&id={$post['id']}'>{$post['title']}</a></br>";
 		}
 	}
 	?>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>All posts</p>
+	<?php 
+	if (isset($all_posts)) {
+		foreach ($all_posts as $post) {
+			$root_path = Config::$configuration["rootpath"];
+			echo "<a href='{$root_path}/index.php?controller=post&action=select&id={$post['id']}'>{$post['title']}</a></br>";
+		}
+	}
+	?>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />	
+	<br />
+	<br />
+	<br />
 </body>
 </html>

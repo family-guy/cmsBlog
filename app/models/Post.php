@@ -34,7 +34,8 @@ class Post {
 	* Other properties
 	*/
 	
-	private $last_ten_posts; // PostIndexView.php
+	private $last_five_posts; // PostIndexView.php
+	private $all_posts; // PostIndexView.php
 	private $valid_id = false; // is <code>$id</code> property a valid value
 	private $write = false; // can post be edited
 	private $username; // matching username to <code>$user_id</code> property
@@ -145,15 +146,28 @@ class Post {
 	/**
 	* @return null or array of associative arrays; keys 'id', 'title'
 	*/
-	public function get_last_ten_posts() {
-		return $this->last_ten_posts;
+	public function get_last_five_posts() {
+		return $this->last_five_posts;
 	}
 	/**
-	* Sets value of <code>$last_ten_posts</code> property
+	* Sets value of <code>$last_five_posts</code> property
 	* @param Db object <code>$db</code>
 	*/
-	public function last_ten_posts(Db $db) {
-		$this->last_ten_posts = self::retrieve($db, ['id', 'title'], 'date', 10, true);
+	public function last_five_posts(Db $db) {
+		$this->last_five_posts = self::retrieve($db, ['id', 'title'], 'date', 5, true);
+	}
+	/**
+	* @return null or array of associative arrays; keys 'id', 'title'
+	*/
+	public function get_all_posts() {
+		return $this->all_posts;
+	}
+	/**
+	* Sets value of <code>$last_five_posts</code> property
+	* @param Db object <code>$db</code>
+	*/
+	public function all_posts(Db $db) {
+		$this->all_posts = self::retrieve($db, ['id', 'title'], 'date', '18446744073709551615', true);
 	}
 	/**
 	* @return boolean

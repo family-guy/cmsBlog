@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 class Db {
 	private static $conn; // ensure connection made at most once
-	private $no_conn_msg = 'No database connection.';
+	private $no_conn_msg = 'No database connection.' . PHP_EOL;
 	
 	public function __construct() {}
 		
@@ -56,7 +56,7 @@ class Db {
 	}
 	/**
 	* Sets new value in field for rows matching criteria
-	* @param array of strings <code>$cols</code>, string <code>$cond</code>, string <code>$table</code>
+	* @param string or integer <code>$new_value</code>, string <code>$col</code>, string <code>$cond</code>, string <code>$table</code>
 	*/
 	public function edit($new_value, $col, $cond, $table) {
 		if (isset(self::$conn)) {
@@ -119,7 +119,7 @@ class Db {
 	/**
 	* Retrieves a certain number of rows in a certain order
 	* @param array of strings <code>$cols</code>, string <code>$order</code>, integer <code>$nb_results</code>, <code>string</code> $table, <code>boolean</code> $desc
-	* Set <code>$order</code> = 'rand()' for no order; set <code>$nb_results</code> = 18446744073709551615 for all results
+	* Set <code>$order</code> = 'rand()' for no order; set <code>$nb_results</code> = '18446744073709551615' for all results
 	* @return array of associative arrays; keys are column headings or null if zero rows returned
 	*/
 	public function retrieve($cols, $order, $nb_results, $table, $desc) {
