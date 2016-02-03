@@ -16,9 +16,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 -->
 <!DOCTYPE html>
 <html lang='en'>
-<meta charset="UTF-8">
-<meta name="description" content="babilib web cms post">
 <head>
+	<meta charset="UTF-8">
+	<?php echo "<meta name='description' content='{$post_title}'>" . PHP_EOL;?>
 	<title><?php echo "{$post_title}";?></title>
 	<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
 	<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
